@@ -1,0 +1,26 @@
+{
+  "name": "codewithtechdev-marketplace",
+  "version": "1.0.0",
+  "description": "Digital Products Marketplace with Neon Database & Netlify Functions",
+  "type": "module",
+  "scripts": {
+    "build": "echo 'No build step needed for static site' && exit 0",
+    "dev": "netlify dev",
+    "test": "echo 'No tests defined' && exit 0",
+    "deploy": "netlify deploy --prod --dir=src"
+  },
+  "keywords": ["marketplace", "digital-products", "neon-database", "netlify"],
+  "author": "CodeWithTechDev",
+  "license": "MIT",
+  "dependencies": {
+    "@neondatabase/serverless": "^0.8.0",
+    "jsonwebtoken": "^9.0.2",
+    "bcryptjs": "^2.4.3"
+  },
+  "devDependencies": {
+    "netlify-cli": "^15.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

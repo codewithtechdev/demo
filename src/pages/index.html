@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeWithTechDev - Digital Products Marketplace</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="images/codewithtechdevlogo.png"/>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="active">Home</a></li>
+                        <li><a href="#html-css-js">HTML/CSS/JS</a></li>
+                        <li><a href="#python">Python</a></li>
+                        <li><a href="#open-source">Open Source</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Always Visible Sidebar -->
+    <div class="sidebar active" id="sidebar">
+        <div class="sidebar-header">
+            <h3><i class="fas fa-folder-open"></i> Browse Categories</h3>
+        </div>
+        <div class="sidebar-menu">
+            <!-- HTML/CSS/JS Categories -->
+            <div class="menu-section">
+                <div class="menu-title">
+                    <i class="fab fa-html5 html-color"></i>
+                    HTML/CSS/JS
+                </div>
+                <ul class="menu-items">
+                    <li class="menu-item-with-preview" data-category="portfolio" data-type="html-css-js">
+                        <span>Portfolio</span>
+                        <div class="subcategory-preview" id="preview-portfolio"></div>
+                    </li>
+                    <li class="menu-item-with-preview" data-category="ui-ux" data-type="html-css-js">
+                        <span>Personal UI/UX & Design</span>
+                        <div class="subcategory-preview" id="preview-ui-ux"></div>
+                    </li>
+                    <li class="menu-item-with-preview" data-category="web-apps" data-type="html-css-js">
+                        <span>Web Apps</span>
+                        <div class="subcategory-preview" id="preview-web-apps"></div>
+                    </li>
+                    <li class="menu-item-with-preview" data-category="games" data-type="html-css-js">
+                        <span>Games & Fun</span>
+                        <div class="subcategory-preview" id="preview-games"></div>
+                    </li>
+                    <li class="menu-item-with-preview" data-category="ecommerce" data-type="html-css-js">
+                        <span>E-commerce & Digital Products</span>
+                        <div class="subcategory-preview" id="preview-ecommerce"></div>
+                    </li>
+                    <li class="menu-item-with-preview" data-category="tools" data-type="html-css-js">
+                        <span>Tools & Utilities</span>
+                        <div class="subcategory-preview" id="preview-tools"></div>
+                    </li>
+                    <li class="menu-item-with-preview" data-category="trending" data-type="html-css-js">
+                        <span>Trending / Experimental</span>
+                        <div class="subcategory-preview" id="preview-trending"></div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Python Categories -->
+            <div class="menu-section">
+                <div class="menu-title">
+                    <i class="fab fa-python python-color"></i>
+                    Python Projects
+                </div>
+                <ul class="menu-items">
+                    <li class="menu-item-with-preview" data-category="beginner" data-type="python">
+                        <span>Beginner Projects</span>
+                        <div class="subcategory-preview" id="preview-beginner"></div>
+                    </li>
+                    <li class="menu-item-with-preview" data-category="web-backend" data-type="python">
+                        <span>Web / Backend Development</span>
+                        <div class="subcategory-preview" id="preview-web-backend"></div>
+                    </li>
+                    <li class="menu-item-with-preview" data-category="data" data-type="python">
+                        <span>Data & Analytics</span>
+                        <div class="subcategory-preview" id="preview-data"></div>
+                    </li>
+                    <li class="menu-item-with-preview" data-category="ai" data-type="python">
+                        <span>AI / Machine Learning</span>
+                        <div class="subcategory-preview" id="preview-ai"></div>
+                    </li>
+                    <li class="menu-item-with-preview" data-category="python-games" data-type="python">
+                        <span>Games / Fun Projects</span>
+                        <div class="subcategory-preview" id="preview-python-games"></div>
+                    </li>
+                    <li class="menu-item-with-preview" data-category="automation" data-type="python">
+                        <span>Automation / Tools</span>
+                        <div class="subcategory-preview" id="preview-automation"></div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Open Source Categories -->
+            <div class="menu-section">
+                <div class="menu-title">
+                    <i class="fas fa-code-branch opensource-color"></i>
+                    Open Source Projects
+                </div>
+                <ul class="menu-items">
+                    <li class="menu-item-with-preview" data-category="web-templates" data-type="open-source">
+                        <span>Web Templates</span>
+                        <div class="subcategory-preview" id="preview-web-templates"></div>
+                    </li>
+                    <li class="menu-item-with-preview" data-category="python-scripts" data-type="open-source">
+                        <span>Python Scripts</span>
+                        <div class="subcategory-preview" id="preview-python-scripts"></div>
+                    </li>
+                    <li class="menu-item-with-preview" data-category="ui-components" data-type="open-source">
+                        <span>UI Components</span>
+                        <div class="subcategory-preview" id="preview-ui-components"></div>
+                    </li>
+                    <li class="menu-item-with-preview" data-category="tools-utilities" data-type="open-source">
+                        <span>Tools & Utilities</span>
+                        <div class="subcategory-preview" id="preview-tools-utilities"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero animated-container">
+        <div class="container">
+            <h1>Premium Digital Products</h1>
+            <p>Discover amazing code templates, scripts, and tools to accelerate your development process. From beautiful UI components to powerful Python scripts.</p>
+            <a href="#html-css-js" class="btn">Explore Products</a>
+        </div>
+    </section>
+
+    <!-- HTML/CSS/JS Products Section -->
+    <section id="html-css-js" class="animated-container">
+        <div class="container">
+            <h2 class="section-title">HTML/CSS/JS Products</h2>
+            <div class="category-tabs">
+                <div class="category-tab active" data-category="all">All</div>
+                <div class="category-tab" data-category="portfolio">Portfolio</div>
+                <div class="category-tab" data-category="ui-ux">UI/UX & Design</div>
+                <div class="category-tab" data-category="web-apps">Web Apps</div>
+                <div class="category-tab" data-category="games">Games & Fun</div>
+                <div class="category-tab" data-category="ecommerce">E-commerce</div>
+                <div class="category-tab" data-category="tools">Tools & Utilities</div>
+                <div class="category-tab" data-category="trending">Trending</div>
+            </div>
+            <div class="products-grid" id="htmlProducts"></div>
+        </div>
+    </section>
+
+    <!-- Python Products Section -->
+    <section id="python" class="python-section animated-container">
+        <div class="container">
+            <h2 class="section-title">Python Products</h2>
+            <div class="python-content">
+                <div class="python-text">
+                    <p>Explore our collection of Python scripts, applications, and tools designed to help you automate tasks, analyze data, and build powerful applications.</p>
+                    <p>From web scraping scripts to machine learning models, our Python products are crafted with efficiency and best practices in mind.</p>
+                </div>
+                <div class="python-image">
+                    <i class="fab fa-python"></i>
+                    <h3>Python Digital Products</h3>
+                    <p>Scripts • Applications • Tools</p>
+                </div>
+            </div>
+            <div class="category-tabs">
+                <div class="category-tab active" data-category="all">All</div>
+                <div class="category-tab" data-category="beginner">Beginner</div>
+                <div class="category-tab" data-category="web-backend">Web/Backend</div>
+                <div class="category-tab" data-category="data">Data & Analytics</div>
+                <div class="category-tab" data-category="ai">AI/ML</div>
+                <div class="category-tab" data-category="python-games">Games</div>
+                <div class="category-tab" data-category="automation">Automation</div>
+            </div>
+            <div class="products-grid" id="pythonProducts"></div>
+        </div>
+    </section>
+
+    <!-- Open Source Products Section -->
+    <section id="open-source" class="animated-container">
+        <div class="container">
+            <h2 class="section-title">Open Source Projects</h2>
+            <div class="opensource-content">
+                <div class="opensource-text">
+                    <p>Free and open source projects for the developer community. Download, use, and contribute to these projects without any cost.</p>
+                    <p>All our open source projects are MIT licensed and available for personal and commercial use.</p>
+                </div>
+                <div class="opensource-image">
+                    <i class="fas fa-code-branch"></i>
+                    <h3>Open Source Community</h3>
+                    <p>Free • Open • Collaborative</p>
+                </div>
+            </div>
+            <div class="category-tabs">
+                <div class="category-tab active" data-category="all">All</div>
+                <div class="category-tab" data-category="web-templates">Web Templates</div>
+                <div class="category-tab" data-category="python-scripts">Python Scripts</div>
+                <div class="category-tab" data-category="ui-components">UI Components</div>
+                <div class="category-tab" data-category="tools-utilities">Tools & Utilities</div>
+            </div>
+            <div class="products-grid" id="opensourceProducts"></div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <p>Have questions about our products or need custom development? Reach out to us!</p>
+                    <ul class="contact-details">
+                        <li><i class="fas fa-envelope"></i> info@codewithtechdev.com</li>
+                    </ul>
+                    <div class="social-icons">
+                        <a href="https://www.youtube.com/@CodeWithTechDev" target="_blank" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@codewithtechdev" target="_blank" class="social-link">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="https://www.facebook.com/CodeWithTechDev/" target="_blank" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/codewithtechdev/" target="_blank" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Send Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>CodeWithTechDev</h3>
+                    <p class="footer-description">Your one-stop shop for high-quality digital products created by CodeWithTechDev. Find premium code templates, scripts, and tools to enhance your development workflow.</p>
+                    <div class="social-icons">
+                        <a href="https://www.youtube.com/@CodeWithTechDev" target="_blank" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@codewithtechdev" target="_blank" class="social-link">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="https://www.facebook.com/CodeWithTechDev/" target="_blank" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/codewithtechdev/" target="_blank" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#html-css-js">HTML/CSS/JS Products</a></li>
+                        <li><a href="#python">Python Products</a></li>
+                        <li><a href="#open-source">Open Source Projects</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="#html-css-js">Website Templates</a></li>
+                        <li><a href="#html-css-js">UI Components</a></li>
+                        <li><a href="#html-css-js">JavaScript Plugins</a></li>
+                        <li><a href="#python">Python Scripts</a></li>
+                        <li><a href="#python">Data Analysis Tools</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support & Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                        <li><a href="documentation.html"><i class="fas fa-book"></i> Documentation</a></li>
+                        <li><a href="terms.html"><i class="fas fa-file-contract"></i> Terms of Service</a></li>
+                        <li><a href="privacy.html"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                        <li><a href="admin.html" class="footer-admin-link"><i class="fas fa-cog"></i> Admin Panel</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 CodeWithTechDev. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+   <script src="js/api.js"></script>
+<script src="js/products.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+<script src="js/auth.js"></script>
+
+</body>
+</html>

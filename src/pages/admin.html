@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - CodeWithTechDev</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .admin-login-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #7ABDE5, #73A9E5);
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .login-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        
+        .login-icon {
+            font-size: 4rem;
+            color: #7ABDE5;
+            margin-bottom: 1rem;
+        }
+
+        /* Enhanced File Upload Styles */
+        .file-upload-section {
+            border: 2px dashed #7ABDE5;
+            border-radius: 15px;
+            padding: 2rem;
+            background: rgba(122, 189, 229, 0.05);
+            margin-top: 1rem;
+        }
+
+        .upload-group {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .upload-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .upload-group label {
+            display: block;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+
+        .upload-group input[type="file"] {
+            width: 100%;
+            padding: 1rem;
+            border: 2px dashed #bdc3c7;
+            border-radius: 8px;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+        }
+
+        .upload-group input[type="file"]:hover {
+            border-color: #7ABDE5;
+            background: rgba(122, 189, 229, 0.05);
+        }
+
+        .file-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .preview-item {
+            position: relative;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .preview-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border-color: #7ABDE5;
+        }
+
+        .preview-item img, .preview-item video {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .preview-item .file-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100px;
+            color: #7ABDE5;
+            font-size: 2rem;
+        }
+
+        .preview-item .file-icon small {
+            font-size: 0.7rem;
+            margin-top: 0.5rem;
+            color: #6c757d;
+        }
+
+        .remove-preview {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .preview-item:hover .remove-preview {
+            opacity: 1;
+        }
+
+        .remove-preview:hover {
+            background: #c82333;
+            transform: scale(1.1);
+        }
+
+        /* Live Demo Toggle Styles */
+        .live-demo-toggle {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #00f3ff;
+        }
+
+        .toggle-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .toggle-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .toggle-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #00f3ff;
+        }
+
+        .live-demo-url-group {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.2);
+            animation: slideDown 0.3s ease;
+        }
+
+        .live-demo-url-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 5px;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            font-size: 1rem;
+        }
+
+        .live-demo-url-group input:focus {
+            outline: none;
+            border-color: #00f3ff;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Enhanced Form Styles */
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #7ABDE5;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(122, 189, 229, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        /* Upload Progress */
+        .upload-progress {
+            margin-top: 0.5rem;
+            background: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 6px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #7ABDE5, #73A9E5);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .upload-status {
+            font-size: 0.8rem;
+            color: #6c757d;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Admin Login Page (shown when not authenticated) -->
+    <div id="adminLoginPage" class="admin-login-page">
+        <div class="login-container">
+            <div class="login-icon">
+                <i class="fas fa-lock"></i>
+            </div>
+            <h2>Admin Access Required</h2>
+            <p style="margin-bottom: 2rem; color: #666;">Please login to access the admin panel</p>
+            <button onclick="redirectToHomeForLogin()" class="btn" style="width: 100%; padding: 1rem;">
+                <i class="fas fa-arrow-left"></i> Back to Home to Login
+            </button>
+        </div>
+    </div>
+
+    <!-- Admin Panel (shown when authenticated) -->
+    <div id="adminPanel" style="display: none;">
+        <section class="admin-panel">
+            <div class="container">
+                <div class="admin-header">
+                    <h2 class="section-title">Admin Panel - CodeWithTechDev</h2>
+                    <div style="display: flex; gap: 1rem;">
+                        <button onclick="testLiveDemo()" class="btn" style="background: #17a2b8;">
+                            <i class="fas fa-play-circle"></i> Test Live Demo
+                        </button>
+                        <button onclick="adminLogout()" class="btn" style="background: #dc3545;">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                </div>
+
+                <div class="admin-tabs">
+                    <button class="admin-tab active" data-tab="add-product">Add Product</button>
+                    <button class="admin-tab" data-tab="manage-products">Manage Products</button>
+                    <button class="admin-tab" data-tab="orders">Orders</button>
+                    <button class="admin-tab" data-tab="database">Database Status</button>
+                </div>
+
+                <!-- Add Product Tab -->
+                <div class="tab-content active" id="add-product">
+                    <div class="product-management">
+                        <div class="form-container">
+                            <h3 style="color: #2c3e50; margin-bottom: 2rem; border-bottom: 3px solid #7ABDE5; padding-bottom: 1rem;">
+                                <i class="fas fa-plus-circle"></i> Add New Product
+                            </h3>
+                            <form id="productForm">
+                                <!-- Product Basic Info -->
+                                <div class="form-group">
+                                    <label for="productType"><i class="fas fa-tags"></i> Product Type</label>
+                                    <select id="productType" required>
+                                        <option value="">Select Product Type</option>
+                                        <option value="html-css-js">HTML/CSS/JS</option>
+                                        <option value="python">Python</option>
+                                        <option value="open-source">Open Source</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="productSubCategory"><i class="fas fa-folder"></i> Sub Category</label>
+                                    <select id="productSubCategory" required>
+                                        <option value="">Select Sub Category</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="productTitle"><i class="fas fa-heading"></i> Product Title</label>
+                                    <input type="text" id="productTitle" required placeholder="Enter product name (e.g., Responsive Portfolio Template)">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="productDescription"><i class="fas fa-file-alt"></i> Description</label>
+                                    <textarea id="productDescription" required placeholder="Describe your product features, technologies used, and key benefits..."></textarea>
+                                </div>
+
+                                <div class="form-group" id="priceGroup">
+                                    <label for="productPrice"><i class="fas fa-dollar-sign"></i> Price ($)</label>
+                                    <input type="number" id="productPrice" step="0.01" placeholder="0.00">
+                                    <small style="color: #6c757d; margin-top: 0.5rem; display: block;">
+                                        <i class="fas fa-info-circle"></i> Leave empty for Open Source products
+                                    </small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="productIcon"><i class="fas fa-icons"></i> Icon (Font Awesome class)</label>
+                                    <input type="text" id="productIcon" value="fas fa-code" required placeholder="fas fa-code">
+                                    <small style="color: #6c757d; margin-top: 0.5rem; display: block;">
+                                        <i class="fas fa-lightbulb"></i> Examples: fas fa-code, fab fa-python, fas fa-palette, fas fa-mobile
+                                    </small>
+                                </div>
+
+                                <!-- Live Demo Section -->
+                                <div class="live-demo-toggle">
+                                    <div class="toggle-group">
+                                        <label>
+                                            <input type="checkbox" id="productLiveDemo">
+                                            <i class="fas fa-play-circle" style="color: #00f3ff;"></i>
+                                            Enable Live Demo
+                                        </label>
+                                    </div>
+                                    <div class="live-demo-url-group" id="liveDemoUrlGroup" style="display: none;">
+                                        <label for="productLiveDemoUrl" style="color: white; margin-bottom: 0.5rem; display: block;">
+                                            <i class="fas fa-link"></i> Live Demo URL
+                                        </label>
+                                        <input type="url" id="productLiveDemoUrl" placeholder="https://your-project-demo.netlify.app">
+                                        <small style="color: rgba(255,255,255,0.8); margin-top: 0.5rem; display: block;">
+                                            <i class="fas fa-external-link-alt"></i> Enter the URL where customers can try your product live
+                                        </small>
+                                    </div>
+                                </div>
+
+                                <!-- Enhanced File Upload Section -->
+                                <div class="form-group">
+                                    <label style="font-size: 1.2rem;">
+                                        <i class="fas fa-cloud-upload-alt"></i> Product Media & Files
+                                    </label>
+                                    <div class="file-upload-section">
+                                        <!-- Multiple Images Upload -->
+                                        <div class="upload-group">
+                                            <label for="productImages">
+                                                <i class="fas fa-images"></i> Product Images (Multiple)
+                                            </label>
+                                            <input type="file" id="productImages" accept=".png,.jpg,.jpeg,.webp" multiple>
+                                            <div class="upload-progress">
+                                                <div class="progress-bar" id="imageProgress"></div>
+                                            </div>
+                                            <div class="upload-status" id="imageStatus">No images selected</div>
+                                            <div class="file-preview" id="imagePreview"></div>
+                                        </div>
+
+                                        <!-- Multiple Videos Upload -->
+                                        <div class="upload-group">
+                                            <label for="productVideos">
+                                                <i class="fas fa-video"></i> Preview Videos (Multiple)
+                                            </label>
+                                            <input type="file" id="productVideos" accept=".mp4,.webm,.mov" multiple>
+                                            <div class="upload-progress">
+                                                <div class="progress-bar" id="videoProgress"></div>
+                                            </div>
+                                            <div class="upload-status" id="videoStatus">No videos selected</div>
+                                            <div class="file-preview" id="videoPreview"></div>
+                                        </div>
+
+                                        <!-- Documentation Files -->
+                                        <div class="upload-group">
+                                            <label for="productDocuments">
+                                                <i class="fas fa-file-pdf"></i> Documentation (PDF, DOC)
+                                            </label>
+                                            <input type="file" id="productDocuments" accept=".pdf,.doc,.docx,.txt" multiple>
+                                            <div class="file-preview" id="documentPreview"></div>
+                                        </div>
+
+                                        <!-- Product Source Files -->
+                                        <div class="upload-group">
+                                            <label for="productFiles">
+                                                <i class="fas fa-file-archive"></i> Product Source Files (ZIP, RAR)
+                                            </label>
+                                            <input type="file" id="productFiles" accept=".zip,.rar,.7z">
+                                            <div class="file-preview" id="filesPreview"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Submit Button -->
+                                <button type="submit" class="btn" id="saveToDatabase" style="width: 100%; padding: 1.2rem; font-size: 1.1rem;">
+                                    <i class="fas fa-save"></i> Save Product to Database
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Database Status Tab -->
+                <div class="tab-content" id="database">
+                    <h3 style="color: #2c3e50; margin-bottom: 2rem;">
+                        <i class="fas fa-database"></i> Neon Database Connection
+                    </h3>
+                    <div class="database-status">
+                        <div class="status-item">
+                            <span>Connection Status:</span>
+                            <span class="status-connected" id="databaseStatus">Checking...</span>
+                        </div>
+                        <div class="status-item">
+                            <span>Total Products:</span>
+                            <span id="totalProducts">0</span>
+                        </div>
+                        <div class="status-item">
+                            <span>Last Sync:</span>
+                            <span id="lastSync">Never</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="js/api.js"></script>
+<script src="js/admin.js"></script>
+    <script>
+        // Enhanced Admin Authentication
+document.addEventListener('DOMContentLoaded', async function() {
+    console.log('🔐 Checking admin authentication...');
+    
+    // Check if we have a valid token
+    const token = localStorage.getItem('adminToken');
+    const tokenExpiry = localStorage.getItem('adminTokenExpiry');
+    
+    if (token && tokenExpiry && Date.now() < parseInt(tokenExpiry)) {
+        // Valid session - show admin panel
+        document.getElementById('adminLoginPage').style.display = 'none';
+        document.getElementById('adminPanel').style.display = 'block';
+        console.log('✅ Admin access granted');
+        
+        // Initialize admin panel
+        if (typeof initAdminPanel === 'function') {
+            initAdminPanel();
+        }
+    } else {
+        // Invalid or expired session
+        document.getElementById('adminLoginPage').style.display = 'flex';
+        document.getElementById('adminPanel').style.display = 'none';
+        console.log('❌ Admin access required');
+        localStorage.removeItem('adminToken');
+        localStorage.removeItem('adminTokenExpiry');
+    }
+});
+
+// Update the login function
+async function adminLogin() {
+    const password = document.getElementById('adminPassword').value;
+    
+    if (!password) {
+        alert('Please enter admin password');
+        return;
+    }
+
+    try {
+        const response = await API.adminLogin(password);
+        
+        if (response.success) {
+            // Store token with expiry (24 hours)
+            const expiry = Date.now() + (24 * 60 * 60 * 1000);
+            localStorage.setItem('adminToken', response.token);
+            localStorage.setItem('adminTokenExpiry', expiry.toString());
+            
+            // Redirect to admin panel
+            document.getElementById('adminLoginPage').style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'block';
+            
+            if (typeof initAdminPanel === 'function') {
+                initAdminPanel();
+            }
+        } else {
+            alert('Login failed: ' + response.error);
+        }
+    } catch (error) {
+        console.error('Login error:', error);
+        alert('Login failed. Please try again.');
+    }
+}
+
+function adminLogout() {
+    if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('adminToken');
+        localStorage.removeItem('adminTokenExpiry');
+        window.location.href = 'index.html';
+    }
+}
+
+// Update the redirect function
+function redirectToHomeForLogin() {
+    window.location.href = 'index.html';
+}
+    </script>
+</body>
+</html>
